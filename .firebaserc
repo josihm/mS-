@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "jt-sistema": {
+      "hosting": {
+        "mS": [
+          "jt-sistema"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "jt-sistema"
+  }
+}

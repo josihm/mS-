@@ -1,0 +1,82 @@
+<div class="container">
+    <h5 class="text-center">
+        FORMULARIO -> SOLICITUD DE SERVICIO DE TRANSPORTE
+    </h5>
+    
+    <h4 class="text-center">Área de captura</h4>
+    <mat-form-field >
+        <input matInput placeholder="Nombre del usuario(s)"
+                ([ngModel])='this.sst.pasajeros'
+                required/>
+    </mat-form-field><br>
+    
+    <mat-form-field>
+        <input matInput placeholder="Destino (Dirección completa)"
+                ([ngModel])='this.sst.destino'
+                required/>
+    </mat-form-field><br>
+    
+    <mat-form-field>
+        <input matInput placeholder="Número de pasajeros"
+                ([ngModel])='this.servicios.selectedST.nPasajeros'
+                required/>
+    </mat-form-field><br>
+    
+    <h5>FECHA DE SALIDA DEL SERVICIO</h5>
+    
+    <mat-form-field>
+        <!--input matInput [(ngModel)]='this.servicios.selectedST.salidaSt'
+                type="date" required/-->
+        <input matInput [matDatepicker]="picker" ([ngModel])='this.sst.salidaSt'>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>HORA DE SALIDA</mat-label>
+        <mat-select [(value)]='this.sst.horaS'
+                    required>
+            <mat-option *ngFor="let hora of horas" [value]="hora.value">
+              {{hora.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <h5>FECHA DE REGRESO DEL SERVICIO</h5>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker2" ([ngModel])='this.sst.regresoSt'/>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>HORA DE REGRESO</mat-label>
+        <mat-select [(value)]='this.sst.horaR' required>
+            <mat-option *ngFor="let hora of horas" [value]="hora.value">
+                {{hora.viewValue}}
+              </mat-option>
+        </mat-select>
+    </mat-form-field><br>
+    <mat-radio-group ([ngModel])='this.sst.tServicio' required>TIPO DE SERVICIO:&nbsp;&nbsp;
+        <mat-radio-button value="LOCAL">LOCAL</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-radio-button value="FORÁNEO">FORÁNEO</mat-radio-button>
+    </mat-radio-group><br><br>
+    <mat-radio-group ([ngModel])='this.sst.tTransporte' required>TIPO DE TRANPORTE:&nbsp;&nbsp;
+        <mat-radio-button value="PASAJEROS">PASAJEROS</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-radio-button value="CARGA">CARGA</mat-radio-button>
+    </mat-radio-group><br>
+    
+    <mat-form-field>
+        <textarea matInput
+                placeholder="Información adicional"
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="5"
+                cdkAutosizeMaxRows="5"
+                ([ngModel])='this.sst.infAd'></textarea>
+    </mat-form-field><br>
+
+    <!--button mat-flat-button color="primary" (click)="solicitarST()"-->
+    <button mat-flat-button color="primary" (click)="guardar()">
+        <mat-icon>save</mat-icon>
+    </button>
+</div>
